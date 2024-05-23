@@ -1,0 +1,57 @@
+<ng-container *ngIf="load" class="text-center mt-2">
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <div class="spinner-border text-secondary" role="status">
+          <span class="sr-only">Loading...Please Wait</span>
+      </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!load">
+  <div>
+      <div class="container px-5">
+          <div class="row mt-3">
+              <div>
+                  <button class="btn btn-outline-secondary btn-details c-black" (click)="returnToHome()">
+                      <i class="fa fa-home mx-1" aria-hidden="true"></i>Back</button>
+              </div>
+              <div>
+                  <h1 class="p-0 py-5 c-black">{{ movieData?.title }}</h1>
+                </div>
+          </div>
+          <div class="row mt-1">
+              <div class="col-2">
+                  <img [src]="movieData?.poster" alt="{{ movieData?.title }} Poster" />
+              </div>
+              <div class="col-8">
+                  <strong class="c-black">Summary:</strong><span class="c-black text-align-justify"> {{ movieData?.summary }}</span>
+              </div>
+          </div>
+          <br>
+
+          <h3 class="text-center py-3 c-black">Details</h3>
+          <table>
+              <tbody>
+                <tr>
+                  <td scope="row">Box Office</td>
+                  <td>{{ movieData?.box_office | budgetPipe }}</td>
+                </tr>
+                <tr>
+                  <td scope="row">Budget</td>
+                  <td>{{ movieData?.budget | budgetPipe }}</td>
+                </tr>
+                <tr>
+                  <td scope="row">Duration</td>
+                  <td>{{ movieData?.duration | durationPipe }}</td>
+                </tr>
+                <tr>
+                  <td scope="row">Producers</td>
+                  <td>{{ movieData?.producers?.join(', ') }}</td>
+                </tr>
+                <tr>
+                  <td scope="row">Cinematographers</td>
+                  <td>{{ movieData?.cinematographers?.join(', ') }}</td>
+                </tr>
+              </tbody>
+            </table>  
+      </div>
+  </div>
+</ng-container>
